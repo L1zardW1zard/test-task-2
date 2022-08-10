@@ -36,12 +36,7 @@ const HorseList = () => {
   return (
     <div className={styles.content}>
       <div className={styles.infoWrapper}>
-        {!ticking && (
-          <>
-            <h3>Horses not Found, click on "Start" button</h3>
-            <button onClick={onClickStart}>Start</button>
-          </>
-        )}
+        {!ticking && <button onClick={onClickStart}>Start</button>}
         {ticking && <h3>Reload page to restart</h3>}
       </div>
 
