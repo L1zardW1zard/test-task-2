@@ -2,6 +2,13 @@
   width: 100%;
 }
 
+.infoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+
 ul {
   list-style: none;
   display: flex;
@@ -15,9 +22,11 @@ li {
 }
 
 button {
-  height: 5%;
-  padding: 0 10px;
-  font-size: 16px;
+  height: 100%;
+  padding: 5px 20px;
+  font-size: 24px;
+  border-radius: 20px;
+  border: none;
   background-color: #ddd;
   transition: 100ms;
   cursor: pointer;
@@ -33,11 +42,21 @@ button:hover {
   justify-content: space-between;
 }
 
-progress {
-  height: 50px;
+.progressBar {
+  height: 40px;
   width: 100%;
-  transition: all 0.1s ease-out;
-  accent-color: #00bcc6;
+  background-color: #ddd;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.progressBar > .fill {
+  position: relative;
+  height: 100%;
+  width: calc(var(width, 0) * 1%);
+  border-radius: 0px;
+  background-color: #09d;
+  transition: all 1s ease-out;
 }
 
 .btnWrapper {

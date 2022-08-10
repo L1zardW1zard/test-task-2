@@ -35,11 +35,17 @@ const HorseList = () => {
 
   return (
     <div className={styles.content}>
-      <div className={styles.btnWrapper}>
-        <button onClick={onClickStart}>Start</button>
+      <div className={styles.infoWrapper}>
+        {!ticking && (
+          <>
+            <h3>Horses not Found, click on "Start" button</h3>
+            <button onClick={onClickStart}>Start</button>
+          </>
+        )}
+        {ticking && <h3>Reload page to restart</h3>}
       </div>
+
       <ul>
-        {!ticking && <h3>Horses not Found, click on "Start" button</h3>}
         {horses.map((horse) => {
           return (
             <li key={horse.name}>
@@ -51,7 +57,12 @@ const HorseList = () => {
                     : "Distance: " + horse.distance}
                 </h2>
               </div>
-              <progress min={0} max={1000} value={horse.distance}></progress>
+              <div className={styles.progressBar}>
+                <div
+                  className={styles.fill}
+                  style={{ width: (horse.distance / 1000) * 100 + "%" }}
+                ></div>
+              </div>
             </li>
           );
         })}
