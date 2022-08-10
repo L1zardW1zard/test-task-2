@@ -57,6 +57,18 @@ button:hover {
   border-radius: 0px;
   background-color: #09d;
   transition: all 1s ease-out;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.progressBar > .fill > img {
+  height: 46px;
+  width: 45px;
+}
+
+svg {
+  width: 10px;
+  height: 10px;
 }
 
 .btnWrapper {

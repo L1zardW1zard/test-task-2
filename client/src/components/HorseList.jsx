@@ -2,9 +2,10 @@ import React from "react";
 import { io } from "socket.io-client";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setItems } from "../redux/slices/horseSlice";
 
+import { setItems } from "../redux/slices/horseSlice";
 import styles from "../css/HorseList.module.css";
+import svg from "../img/horse.svg";
 
 const socket = io.connect("http://localhost:3002");
 
@@ -31,6 +32,9 @@ const HorseList = () => {
     });
 
     socket.on("disconnect", () => setTicking(false));
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   return (
@@ -56,7 +60,9 @@ const HorseList = () => {
                 <div
                   className={styles.fill}
                   style={{ width: (horse.distance / 1000) * 100 + "%" }}
-                ></div>
+                >
+                  <img src={svg} alt="horse" />
+                </div>
               </div>
             </li>
           );
