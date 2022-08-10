@@ -1,6 +1,5 @@
 .content {
   width: 100%;
-  height: 500px;
 }
 
 ul {
@@ -34,9 +33,11 @@ button:hover {
   justify-content: space-between;
 }
 
-input {
+progress {
+  height: 50px;
   width: 100%;
-  transition: 100ms;
+  transition: all 0.1s ease-out;
+  accent-color: #00bcc6;
 }
 
 .btnWrapper {

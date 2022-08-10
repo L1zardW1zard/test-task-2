@@ -1,13 +1,17 @@
 import React from "react";
 import { io } from "socket.io-client";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setItems } from "../redux/slices/horseSlice";
+
 import styles from "../css/HorseList.module.css";
 
 const socket = io.connect("http://localhost:3002");
 
 const HorseList = () => {
-  const [horses, setHorses] = React.useState([]);
+  const horses = useSelector((state) => state.horses.items);
   const [ticking, setTicking] = React.useState(false);
+  const dispatch = useDispatch();
 
   const onClickStart = () => {
     if (!ticking) {
@@ -22,7 +26,7 @@ const HorseList = () => {
     });
 
     socket.on("ticker", (data) => {
-      setHorses(data);
+      dispatch(setItems(data));
       console.log("tick");
     });
 
@@ -41,15 +45,13 @@ const HorseList = () => {
             <li key={horse.name}>
               <div className={styles.horseInfo}>
                 <h2>{horse.name}</h2>
-                <h2>Distance: {horse.distance}</h2>
+                <h2>
+                  {horse.distance === 1000
+                    ? "Finished"
+                    : "Distance: " + horse.distance}
+                </h2>
               </div>
-              <input
-                type="range"
-                min={0}
-                max={1000}
-                value={horse.distance}
-                readOnly
-              />
+              <progress min={0} max={1000} value={horse.distance}></progress>
             </li>
           );
         })}
